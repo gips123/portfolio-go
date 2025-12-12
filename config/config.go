@@ -96,6 +96,7 @@ func getCORSOrigins() []string {
 		"http://127.0.0.1:3000",
 		"http://127.0.0.1:3001",
 		"https://dashboard-admin-portfolio.vercel.app",
+		"https://portfolio-main-go.vercel.app",
 	}
 
 	// Add additional origins from CORS_ORIGIN if specified
