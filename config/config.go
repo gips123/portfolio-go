@@ -86,13 +86,15 @@ func getEnvAsInt(key string, defaultValue int) int {
 }
 
 // getCORSOrigins returns allowed CORS origins
-// Always includes http://localhost:3000 and http://localhost:3001
+// Always includes http://localhost:3000, http://localhost:3001, and http://127.0.0.1:3000
 // Also supports additional origins from CORS_ORIGIN env var (comma-separated)
 func getCORSOrigins() []string {
-	// Always include both localhost ports
+	// Always include both localhost ports and 127.0.0.1 (browser treats them differently)
 	origins := []string{
 		"http://localhost:3000",
 		"http://localhost:3001",
+		"http://127.0.0.1:3000",
+		"http://127.0.0.1:3001",
 	}
 
 	// Add additional origins from CORS_ORIGIN if specified

@@ -1,0 +1,75 @@
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Documentation
+*.md
+docs/
+CONTRIBUTING.md
+PROJECT_STRUCTURE.md
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+.project
+.classpath
+.settings/
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+Desktop.ini
+
+# Build artifacts
+portfolio-api
+*.exe
+bin/
+dist/
+
+# Test files
+*_test.go
+*.test
+test_*.sh
+*.test.sh
+
+# Logs
+*.log
+logs/
+
+# Environment files (will be passed via docker-compose)
+.env
+.env.local
+.env.*.local
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.bak
+*.backup
+
+# Go cache
+.gocache/
+.modcache/
+
+# Postman collections
+postman/
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Coverage
+*.out
+coverage.*
+
+# Debug
+debug
+__debug_bin
+

@@ -1,0 +1,64 @@
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15
+    container_name: portfolio-postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: tnqb2289
+      POSTGRES_DB: portfolio
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - portfolio-network
+
+  # Portfolio API
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: portfolio-api
+    environment:
+      # Database configuration
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_PASSWORD: tnqb2289
+      DB_NAME: portfolio
+      DB_SSLMODE: disable
+      
+      # Server configuration
+      PORT: 8080
+      
+      # CORS configuration
+      CORS_ORIGIN: http://localhost:3000,http://localhost:3001,http://127.0.0.1:3000,http://127.0.0.1:3001
+      
+      # JWT configuration
+      JWT_SECRET: change-me-to-secure-secret-key-in-production
+      JWT_TOKEN_TTL_MINUTES: 720
+      ADMIN_USERNAME: ghifary
+      ADMIN_PASSWORD: tnqb2289
+    ports:
+      - "8080:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - portfolio-network
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+    driver: local
+
+networks:
+  portfolio-network:
+    driver: bridge
+
