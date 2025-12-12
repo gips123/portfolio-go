@@ -1,0 +1,21 @@
+# Ignore files untuk Render build
+.git
+.gitignore
+README.md
+DOCKER.md
+CONTRIBUTING.md
+*.md
+.env
+.env.local
+.env.*.local
+docker-compose.yml
+docker-compose.*.yml
+Dockerfile.dev
+docker-setup.sh
+docker-fix.sh
+supabase/
+migrations/
+*.log
+.DS_Store
+
+
